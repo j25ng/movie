@@ -1,15 +1,21 @@
 [project]
 name = "movie"
-version = "0.1.0"
-description = "Default template for PDM package"
+version = "0.2.0"
+description = "영화진흥위원회 영화순위 데이터 처리"
 authors = [
     {name = "j25ng", email = "jsan2861@gmail.com"},
 ]
 dependencies = []
-requires-python = "==3.11.*"
+requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
 
-
 [tool.pdm]
 distribution = false
+
+[project.scripts]
+mov-ping = 'movie.cli:ping'
+
+[project.urls]
+Homepage = "https://github.com/j25ng/movie"
+Issues = "https://github.com/j25ng/movie/issues"
