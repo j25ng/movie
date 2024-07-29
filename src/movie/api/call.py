@@ -20,21 +20,20 @@ def get_key():
     key = os.getenv("MOVIE_API_KEY")
     return key
 
-def req2list():
+def req2list(loadDt='20120101'):
     _, data = req()
     # data.get('boxOfficeResult').get('dailyBoxOfficeList')
     l = data['boxOfficeResult']['dailyBoxOfficeList']
     return l
 
-def list2df():
+def list2df(loadDt='20120101'):
     l = req2list()
     df = pd.DataFrame(l)
     return df
 
-def save2df():
-    df = list2df()
+def save2df(loadDt='20120101'):
+    df = list2df(loadDt)
     df['loadDt'] = "20120101"
     df.to_parquet('~/tmp/test_parquet/', partition_cols=['loadDt'])
     return df
 
-save2df()
