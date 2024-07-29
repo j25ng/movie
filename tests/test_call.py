@@ -1,4 +1,4 @@
-from movie.api.call import gen_url, req, get_key, req2list, list2df
+from movie.api.call import gen_url, req, get_key, req2list, list2df, save2df
 import pandas as pd
 
 def test_hide_key():
@@ -16,7 +16,9 @@ def test_req():
 
 def test_req2list():
     l = req2list()
-    assert l
+    assert len(l) > 0
+    v = l[0]
+    assert 'rnum' in v.keys()
 
 def test_list2df():
     df = list2df()
@@ -25,3 +27,8 @@ def test_list2df():
     assert 'openDt' in df.columns
     assert 'movieNm' in df.columns
     assert 'audiAcc' in df.columns
+
+def test_save2df():
+    df = save2df()
+    assert isinstance(df, pd.DataFrame)
+    assert 'loadDt' in df.columns

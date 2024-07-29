@@ -30,3 +30,11 @@ def list2df():
     l = req2list()
     df = pd.DataFrame(l)
     return df
+
+def save2df():
+    df = list2df()
+    df['loadDt'] = "20120101"
+    df.to_parquet('~/tmp/test_parquet/', partition_cols=['loadDt'])
+    return df
+
+save2df()
