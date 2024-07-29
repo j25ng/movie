@@ -2,13 +2,13 @@ import requests
 import os
 import pandas as pd
 
-def gen_url(dt):
+def gen_url(dt='20120101'):
     base_url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
     key = get_key()
     url = f"{base_url}?key={key}&targetDt={dt}"
     return url
 
-def req(dt):
+def req(dt='20120101'):
     url = gen_url(dt)
     r = requests.get(url)
     code = r.status_code
@@ -20,18 +20,18 @@ def get_key():
     key = os.getenv("MOVIE_API_KEY")
     return key
 
-def req2list(dt):
+def req2list(dt='20120101'):
     _, data = req(dt)
     # data.get('boxOfficeResult').get('dailyBoxOfficeList')
     l = data['boxOfficeResult']['dailyBoxOfficeList']
     return l
 
-def list2df(dt):
+def list2df(dt='20120101'):
     l = req2list(dt)
     df = pd.DataFrame(l)
     return df
 
-def save2df(dt='20210101'):
+def save2df(dt='20120101'):
     df = list2df(dt)
     df['loadDt'] = dt 
     df.to_parquet('~/tmp/test_parquet/', partition_cols=['loadDt'])
