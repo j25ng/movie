@@ -14,6 +14,7 @@ $ pip install git+https://github.com/j25ng/movie.git@<BRANCH_NAME>
 $ git clone <URL>
 $ cd <DIR>
 $ source .venv/bin/activate
+$ pdm install
 $ pytest
 
 # option
