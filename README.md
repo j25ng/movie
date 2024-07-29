@@ -13,8 +13,17 @@ $ pip install git+https://github.com/j25ng/movie.git@<BRANCH_NAME>
 ```bash
 $ git clone <URL>
 $ cd <DIR>
+$ source .venv/bin/activate
+$ pytest
 
 # option
 $ pdm venv create
-$ source .venv/bin/activate
+```
+
+### setting env
+```bash
+$ cat ~/.zshrc | tail -n 3
+
+# MY_ENV
+export MOVIE_API_KEY="<KEY>"
 ```
