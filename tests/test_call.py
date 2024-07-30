@@ -32,3 +32,7 @@ def test_save2df():
     df = save2df()
     assert isinstance(df, pd.DataFrame)
     assert 'loadDt' in df.columns
+
+def test_echo():
+    r = echo("hello")
+    assert r == "hello"
