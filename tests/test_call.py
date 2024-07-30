@@ -1,4 +1,4 @@
-from movie.api.call import gen_url, req, get_key, req2list, list2df, save2df
+from movie.api.call import gen_url, req, get_key, req2list, list2df, save2df, echo, apply_type2df
 import pandas as pd
 
 def test_hide_key():
@@ -36,3 +36,10 @@ def test_save2df():
 def test_echo():
     r = echo("hello")
     assert r == "hello"
+
+def test_apply_type2df():
+    df, num_cols = apply_type2df()
+    assert isinstance(df, pd.DataFrame)
+
+    for c in num_cols:
+        assert df[c].dtype in ['int64', 'float64']
