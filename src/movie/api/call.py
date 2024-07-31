@@ -2,7 +2,7 @@ import requests
 import os
 import pandas as pd
 
-def gen_url(dt='20120101', url_param = {"multiMovieYn": "N"}):
+def gen_url(dt='20120101', url_param = {}):
     base_url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
     key = get_key()
     url = f"{base_url}?key={key}&targetDt={dt}"
@@ -38,7 +38,7 @@ def list2df(dt='20120101', url_param={}):
 def save2df(dt='20120101', url_param={}):
     df = list2df(dt, url_param)
     df['loadDt'] = dt 
-    df.to_parquet('~/tmp/test_parquet/', partition_cols=['loadDt'])
+   #df.to_parquet('~/tmp/test_parquet/', partition_cols=['loadDt'])
     return df
 
 def echo(yaho):
